@@ -7,7 +7,7 @@ export function Ejemplo02(props) {
   
   return (
     <div style={fondo.tema}>
-      <h1>valor: {contador}</h1>
+      <h1>Valor: {contador}</h1>
       <div className='target__button'>
         <Button variant='success' onClick={incrementar}>Incrementar</Button>
         <Button variant='danger' onClick={decrementar}>Decrementar</Button>
