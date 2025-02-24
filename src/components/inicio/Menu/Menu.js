@@ -11,7 +11,7 @@ export function Menu() {
           <Nav className="me-auto">
             <Link to="/">Home</Link>
             <Link to="/producto">Productos</Link>
-            <Link to="#pricing">Pricing</Link>
+            <Link to="/formproductos">Gestion de productos</Link>
           </Nav>
         </Container>
       </Navbar>
