@@ -17,18 +17,16 @@ export function Productos() {
     onSubmit: async (formValue) => {
       try {
         await ctrProducto.createProduct(formValue);
-        // Recargar la página después de crear el producto
-        //window.location.reload();
-        obtenerProducto();
+        obtenerProductos(); // Cambiado a "obtenerProductos"
       } catch (error) {
         console.error("Error al crear el producto:", error);
       }
     },
   });
 
-  const obtenerProducto = async () => {
+  const obtenerProductos = async () => { // Cambiado a "obtenerProductos"
     try {
-      const listaPro = await ctrProducto.getProducto();
+      const listaPro = await ctrProducto.getProductos(); // Cambiado a "getProductos"
       setListaProductos(listaPro || []); // Asegurarse de que listaPro sea un array
     } catch (error) {
       console.error("Error al obtener los productos:", error);
@@ -38,9 +36,8 @@ export function Productos() {
 
   const eliminarProducto = async (id) => {
     try {
-      console.log("Eliminando producto con ID:", id); // Verifica el ID del producto
+      console.log("Eliminando producto con ID:", id);
       await ctrProducto.deleteProduct(id);
-      // Actualizar la lista de productos localmente
       setListaProductos((prevLista) => prevLista.filter((producto) => producto._id !== id));
     } catch (error) {
       console.error("Error al eliminar el producto:", error);
@@ -48,7 +45,7 @@ export function Productos() {
   };
 
   useEffect(() => {
-    obtenerProducto();
+    obtenerProductos(); // Cambiado a "obtenerProductos"
   }, []);
 
   return (

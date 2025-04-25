@@ -11,32 +11,38 @@ export class Producto {
                 formData.append(key, data[key]);
             });
 
-            const response = await Axios.post(`${this.baseApi}/${ENV.API_ROUTES.CREATEPRODUCTO}`, formData, {
-                headers: { "Content-Type": "multipart/form-data" },
-            });
+            if (data.imagep) {
+                formData.append("imagep", data.imagep);
+            }
+
+            const response = await Axios.post(
+                `${this.baseApi}/${ENV.API_ROUTES.CREATEPRODUCTO}`,
+                formData,
+                { headers: { "Content-Type": "multipart/form-data" } }
+            );
 
             console.log("Se agregó el producto correctamente");
-            return response.data; // Devuelve el producto creado
+            return response.data;
         } catch (error) {
             console.error("Error al crear producto:", error);
             throw error;
         }
     }
 
-    async getProducto() {
+    async getProductos() {
         try {
             const url = `${this.baseApi}/${ENV.API_ROUTES.GETPRODUCTO}`;
             const response = await Axios.get(url);
-            return response.data; // Devuelve los productos correctamente
+            return response.data;
         } catch (err) {
             console.error("Error al obtener productos:", err);
-            return []; // Devuelve un array vacío en caso de error
+            return [];
         }
     }
 
     async deleteProduct(id) {
         try {
-            const url = `${this.baseApi}/${ENV.API_ROUTES.DELETEPRODUCTO}/${id}`;
+            const url = `${this.baseApi}/${ENV.API_ROUTES.DELETEPRODUCTO}/${id}`; // corregido aquí
             await Axios.delete(url);
             console.log("Producto eliminado correctamente");
         } catch (error) {
